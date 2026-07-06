@@ -1,4 +1,14 @@
 # Ramas-Repo
+
+Boton Actualizar
+Se dividió en dao y controller
+En el Dao se encontraba todo el apartado de conexcion usando try y catch para que las conexiones se cierren de manera automática
+Se agregó un if que enviaba un mensaje en caso de no tener conexión
+Instruccion query para actualizar en DAO: "UPDATE productos SET nombre=?, tipo_cafe=?, precio=? WHERE id=?"
+
+Para el controller se uso metodos para cargar la base de datos y con un objeto de la clase produtos el cual guardaba los datos de la tabla
+se cargaban a los textfield para posteriormente modificarlos
+
 LD (Creacion -jar y .exe): 
 1. mvn clean package
 
