@@ -1,18 +1,7 @@
 # Ramas-Repo
-package org.example.mostraaerw;
+Establecer la conexion de la base de datos con el tableView
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-import javax.swing.*;
-import java.net.URL;
-import java.sql.*;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class aplicacionController implements Initializable {
     public void guardar() {
