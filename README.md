@@ -1,3 +1,1 @@
 # Ramas-Repo
-
-Jhonatan Guacapiña
