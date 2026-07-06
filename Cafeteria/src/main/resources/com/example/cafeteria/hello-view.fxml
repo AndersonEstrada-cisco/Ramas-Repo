@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.mostraaerw.aplicacionController">>
+    <children>
+        <Label layoutX="30.0" layoutY="25.0" text="Control de Inventario - Productos" textFill="#2f3640">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="30.0" layoutY="85.0" text="Nombre Cliente" textFill="#718093">
+            <font><Font name="System Bold" size="12.0" /></font>
+        </Label>
+        <TextField fx:id="txtNombre" layoutX="30.0" layoutY="110.0" prefHeight="30.0" prefWidth="220.0" promptText="Ej. Teclado Mecánico" />
+
+        <Label layoutX="30.0" layoutY="165.0" text="Precio ($):" textFill="#718093">
+            <font><Font name="System Bold" size="12.0" /></font>
+        </Label>
+        <TextField fx:id="txtPrecio" layoutX="30.0" layoutY="190.0" prefHeight="30.0" prefWidth="220.0" promptText="Ej. 45.50" />
+
+        <Button fx:id="btnGuardar" layoutX="30.0" layoutY="340.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #4cd137; -fx-text-fill: white;" text="GUARDAR">
+            <font><Font name="System Bold" size="11.0" /></font>
+        </Button>
+
+        <Button fx:id="btnEliminar" layoutX="30.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ff4757; -fx-text-fill: white;" text="ELIMINAR">
+            <font><Font name="System Bold" size="11.0" /></font>
+        </Button>
+
+        <Button fx:id="btnLimpiar" layoutX="150.0" layoutY="390.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #718093; -fx-text-fill: white;" text="LIMPIAR">
+            <font><Font name="System Bold" size="11.0" /></font>
+        </Button>
+
+        <TableView fx:id="tabla" layoutX="285.0" layoutY="85.0" prefHeight="335.0" prefWidth="435.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="colNombre" prefWidth="170.0" text="Nombre" />
+                <TableColumn fx:id="colPrecio" prefWidth="100.0" text="Precio" />
+                <TableColumn fx:id="colStock" prefWidth="110.0" text="Stock Dispon." />
+            </columns>
+        </TableView>
+        <Label layoutX="30.0" layoutY="236.0" text="Tipo Cafe" />
+        <ComboBox fx:id="cmbTipoCafe" layoutX="30.0" layoutY="265.0" prefWidth="150.0" />
+    </children>
+</AnchorPane>
