@@ -1,0 +1,119 @@
+package com.example.cafeteria;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import javax.swing.JOptionPane;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+public class aplicacionController implements Initializable {
+
+    @FXML
+    private Label welcomeText;
+
+    @FXML
+    private TableView<Productos> tabla;
+
+    @FXML
+    private TextField txtNombre;
+
+    @FXML
+    private TextField txtPrecio;
+
+    @FXML
+    private ComboBox<String> cmbTipoCafe;
+
+    @FXML
+    private TableColumn<Productos, Integer> colId;
+
+    @FXML
+    private TableColumn<Productos, String> colNombre;
+
+    @FXML
+    private TableColumn<Productos, String> colTipo;
+
+    @FXML
+    private TableColumn<Productos, Double> colPrecio;
+
+    private aplicacionDAO dao = new aplicacionDAO();
+    private ObservableList<Productos> listaProductos = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        cmbTipoCafe.getItems().addAll(
+                "Americano", "Expreso", "Capuccino",
+                "Mocha", "Latte", "Frappe"
+        );
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipoCafe"));
+
+        try {
+            cargarBD();
+        } catch (Exception e) {
+            System.out.println("Error cargando BD: " + e.getMessage());
+            e.printStackTrace();
+
+            javafx.scene.control.Alert alert =
+                    new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING);
+
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Base de datos no disponible");
+            alert.setContentText("La aplicación seguirá funcionando sin datos.");
+            alert.show();
+        }
+
+        tabla.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
+            if (newSel != null) {
+                txtNombre.setText(newSel.getNombre());
+                txtPrecio.setText(String.valueOf(newSel.getPrecio()));
+                cmbTipoCafe.setValue(newSel.getTipoCafe());
+            }
+        });
+    }
+
+    private void cargarBD() {
+
+        try {
+            listaProductos.clear();
+
+            var datos = dao.listar();
+
+            if (datos != null) {
+                listaProductos.addAll(datos);
+            }
+
+            tabla.setItems(listaProductos);
+
+        } catch (Exception e) {
+            System.out.println("Error cargando BD: " + e.getMessage());
+        }
+    }
+
+
+    private void mostrarAlerta(
+            String titulo,
+            String mensaje,
+            Alert.AlertType tipo
+    ) {
+
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+}
