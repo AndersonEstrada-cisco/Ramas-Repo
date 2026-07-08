@@ -23,7 +23,7 @@ public class aplicacionDAO {
         Connection con = getConexion();
 
         if (con == null) {
-            System.out.println("Sin conexión a BD (guardar)");
+            System.out.println("Sin conexión a BD");
             return;
         }
 
@@ -32,11 +32,10 @@ public class aplicacionDAO {
             ps.setString(1, p.getNombre());
             ps.setString(2, p.getTipoCafe());
             ps.setDouble(3, p.getPrecio());
-
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("Error guardar: " + e.getMessage());
+            System.out.println("Error al guardar: " + e.getMessage());
         }
     }
 
